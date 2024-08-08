@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./html5up-landed:/usr/share/nginx/html
+    container_name: nginx-html5up-landed
