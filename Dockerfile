@@ -1,5 +1,5 @@
 # Use the official Nginx image as the base image
-FROM nginx:latest
+FROM nginx:alpine-perl:latest
 
 # Copy your website content into the container
 COPY ./html5up-landed /usr/share/nginx/html
