@@ -22,6 +22,16 @@ services:
         max-size: "10m"
         max-file: "3"
 
+    # Enforce a read-only filesystem
+    read_only: true
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
+
     # Connect to the dedicated network
     networks:
       - my_custom_network
