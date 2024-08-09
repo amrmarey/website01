@@ -2,9 +2,30 @@ version: '3.8'
 
 services:
   web:
-    build: .
+    image: ghcr.io/amrmarey/website01:latest
     ports:
       - "80:80"
-    volumes:
-      - ./html5up-landed:/usr/share/nginx/html
     container_name: nginx-html5up-landed
+
+    # Health check configuration
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Connect to the dedicated network
+    networks:
+      - my_custom_network
+
+networks:
+  my_custom_network:
+    driver: bridge
